@@ -1,0 +1,138 @@
+Ñòðóêòóðà ïàïîê
+Ñåðèéíûé íîìåð òîìà: 8E8C-645A
+C:.
+¦   config.py
+¦   main.py
+¦   routes.py
+¦   ñòðóêòóðà.txt
+¦   ñòðóêòóðà_ïàïîê.txt
+¦   
++---.idea
+¦   ¦   .gitignore
+¦   ¦   jsLibraryMappings.xml
+¦   ¦   misc.xml
+¦   ¦   modules.xml
+¦   ¦   SPAFCKFSH.iml
+¦   ¦   workspace.xml
+¦   ¦   
+¦   L---inspectionProfiles
+¦           profiles_settings.xml
+¦           
++---cerf
+¦       certificate.crt
+¦       private.key
+¦       
++---db
+¦   ¦   database.db
+¦   ¦   models.py
+¦   ¦   
+¦   L---__pycache__
+¦           models.cpython-313.pyc
+¦           
++---fck_app
+¦   ¦   bot.py
+¦   ¦   __init__.py
+¦   ¦   
+¦   L---__pycache__
+¦           bot.cpython-313.pyc
+¦           routes.cpython-313.pyc
+¦           __init__.cpython-313.pyc
+¦           
++---static
+¦   ¦   favicon.ico
+¦   ¦   
+¦   +---css
+¦   ¦       footer.css
+¦   ¦       friends.css
+¦   ¦       global.css
+¦   ¦       loading.css
+¦   ¦       main.css
+¦   ¦       menu.css
+¦   ¦       settings.css
+¦   ¦       unsupported.css
+¦   ¦       
+¦   +---fonts
+¦   ¦       gillsansc.eot
+¦   ¦       gillsansc.svg
+¦   ¦       gillsansc.ttf
+¦   ¦       gillsansc.woff
+¦   ¦       gillsansc.woff2
+¦   ¦       ofont.ru_Gill Sans.ttf
+¦   ¦       wolfensteinrusbylyajka.otf
+¦   ¦       
+¦   +---icons
+¦   ¦       AutoClicker.exe
+¦   ¦       AVATAR3.png
+¦   ¦       back.jpg
+¦   ¦       currency-icon.png
+¦   ¦       de.png
+¦   ¦       default-avatar.png
+¦   ¦       display.png
+¦   ¦       exchange.png
+¦   ¦       friends.png
+¦   ¦       gift-icon.png
+¦   ¦       help-icon.png
+¦   ¦       home.png
+¦   ¦       icon1.png
+¦   ¦       icon2.png
+¦   ¦       icon3.png
+¦   ¦       main.png
+¦   ¦       megaphone-icon.png
+¦   ¦       menu.png
+¦   ¦       mini-games.png
+¦   ¦       moon-icon.png
+¦   ¦       news.png
+¦   ¦       percent-icon.png
+¦   ¦       qr.png
+¦   ¦       settings.png
+¦   ¦       shop.png
+¦   ¦       sun-icon.png
+¦   ¦       user-avatar.png
+¦   ¦       warningload.png
+¦   ¦       windowsdesktop-runtime-6.0.36-win-x64.exe
+¦   ¦       
+¦   +---js
+¦   ¦   ¦   spa.js
+¦   ¦   ¦   
+¦   ¦   +---libs
+¦   ¦   ¦   ¦   BufferGeometryUtils.js
+¦   ¦   ¦   ¦   DRACOLoader.js
+¦   ¦   ¦   ¦   GLTFLoader.js
+¦   ¦   ¦   ¦   OrbitControls.js
+¦   ¦   ¦   ¦   three.core.js
+¦   ¦   ¦   ¦   three.module.js
+¦   ¦   ¦   ¦   
+¦   ¦   ¦   L---draco
+¦   ¦   ¦           draco_decoder.wasm
+¦   ¦   ¦           draco_wasm_wrapper.js
+¦   ¦   ¦           
+¦   ¦   L---pages
+¦   ¦           avatarViewer.js
+¦   ¦           footer.js
+¦   ¦           friends.js
+¦   ¦           loading.js
+¦   ¦           main.js
+¦   ¦           menu.js
+¦   ¦           settings.js
+¦   ¦           unsupported.js
+¦   ¦           
+¦   L---models
+¦       L---avatars
+¦               avatar.glb
+¦               
++---templates
+¦       brand.html
+¦       footer.html
+¦       friends.html
+¦       index.html
+¦       loading.html
+¦       main.html
+¦       menu.html
+¦       news.html
+¦       unsupported.html
+¦       
+L---__pycache__
+        config.cpython-313.pyc
+        main.cpython-313.pyc
+        routes.cpython-313.pyc
+        

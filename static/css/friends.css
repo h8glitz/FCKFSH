@@ -1,0 +1,210 @@
+/* /static/css/friends.css */
+
+/* Подключаем шрифт */
+@font-face {
+    font-family: 'GillSans';
+    src: url('/static/fonts/ofont.ru_Gill Sans.ttf') format('truetype');
+}
+
+/* Общие стили */
+.friends-container * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Контейнер для экрана "Друзья" */
+#screen-friends {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #e3e2e3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+}
+
+/* Основной wrapper */
+.friends-wrapper {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e3e2e3;
+    box-sizing: border-box;
+    padding-bottom: 60px;
+}
+
+/* Контейнер друзей */
+.friends-container {
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+    margin: 0 auto;
+    background-color: #e3e2e3;
+    display: flex;
+    flex-direction: column;
+    font-family: 'GillSans', sans-serif;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+/* Заголовок */
+.friends-container .header {
+    background-color: #555;
+    color: white;
+    text-align: center;
+    width: 100%;
+    padding: 15px 0;
+    font-size: 19px;
+    font-weight: 800;
+    animation: slideInDown 0.6s ease-out forwards;
+}
+
+/* Контент */
+.friends-container .content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* 🔥 Блок информации */
+.friends-container .info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 90%;
+    max-width: 350px;
+    margin-bottom: 15px;
+    text-align: left;
+    gap: 10px;
+}
+
+.friends-container .info img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+/* 🔥 Кнопка "Пригласить друга" */
+.friends-button {
+    display: block;
+    width: 90%;
+    max-width: 320px;
+    background-color: #fff;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    padding: 14px;
+    border-radius: 12px;
+    margin: 20px auto;
+    font-size: 20px;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок "Доход" */
+.income-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 1000;
+    color: #333;
+    margin: 30px 0;
+}
+
+/* 🔥 Список друзей */
+.income {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+    opacity: 1 !important;
+}
+
+/* 🔥 Исправленный стиль списка друзей */
+.income .item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 350px;
+    padding: 12px 15px;
+    margin-bottom: 12px;
+    background-color: #fff;
+    border-radius: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    opacity: 1 !important;
+    animation: fadeInUp 0.6s ease-out forwards;
+    box-sizing: border-box;
+    gap: 10px;
+}
+
+/* 🔥 Исправленный размер аватаров */
+.income .item img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Имя + статус */
+.income .item .name {
+    flex: 1;
+    font-size: 18px;
+    font-weight: bold;
+    color: #4b4b4b;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-items: flex-start;
+}
+
+/* Статус */
+.income .item .type {
+    font-size: 14px;
+    color: #808080;
+    margin-top: 2px;
+}
+
+/* Блок валюты */
+.income .item .value {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Иконка валюты */
+.income .item .value img {
+    width: 32px;
+    height: 35px;
+    object-fit: contain;
+}
+
+/* Медиа-запросы */
+@media (max-width: 480px) {
+    .friends-container {
+        width: 100%;
+    }
+
+    .income .item {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .friends-button {
+        font-size: 21px;
+        padding: 12px;
+    }
+}

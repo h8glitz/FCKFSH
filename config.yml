@@ -1,0 +1,10 @@
+tunnel: 6eeeb1a7-3773-4e7d-bd44-8c8477151bc4
+credentials-file: C:\Users\h8glitz\.cloudflared\6eeeb1a7-3773-4e7d-bd44-8c8477151bc4.json
+
+ingress:
+  - hostname: fckfsh.ru
+    service: http://127.0.0.1:5000
+  - service: http_status:404
+
+originRequest:
+  noTLSVerify: true

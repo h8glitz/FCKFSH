@@ -1,0 +1,43 @@
+<div class="news-container">
+    <!-- Шапка -->
+    <div class="header">
+        <div class="back-button"></div>
+        <div class="title">FCK NEWS</div>
+        <!-- Кнопка "Add" для перехода во вкладку модерации -->
+        <div class="add-button hidden">
+            <img src="/static/icons/add-icon.png" alt="Добавить">
+        </div>
+    </div>
+
+    <!-- Контейнер для "основной ленты" (одобренные новости) -->
+    <div id="approved-news-section" class="news-feed">
+        <!-- Здесь будет динамически подгружаться список одобренных новостей -->
+    </div>
+
+    <!-- Контейнер для "модерации" (скрыт по умолчанию) -->
+    <div id="moderation-section" class="hidden">
+        <h2>Новости на модерации</h2>
+        <div class="news-feed" id="unapproved-news-list"></div>
+    </div>
+</div>
+
+<!-- Детальный просмотр одной новости + комментарии -->
+<div id="news-details-section" class="hidden">
+    <!-- Кнопка "назад" -->
+    <button id="details-back-button" class="details-back">
+        Назад
+    </button>
+
+    <!-- Содержимое выбранной новости -->
+    <div id="selected-news-card" class="news-card"></div>
+
+    <!-- Комментарии -->
+    <h3>Обсуждение:</h3>
+    <div id="comments-section"></div>
+
+    <!-- Форма добавления комментария -->
+    <div class="add-comment">
+        <textarea id="comment-input" placeholder="Напишите комментарий..."></textarea>
+        <button id="comment-submit">Отправить</button>
+    </div>
+</div>

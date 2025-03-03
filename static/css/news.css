@@ -1,0 +1,400 @@
+@font-face {
+    font-family: 'Wolfenstein';
+    src: url('/static/fonts/wolfensteinrusbylyajka.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'gillsansnews';
+    src: url('/static/fonts/gill-sans-ultra-bold.ttf') format('opentype');
+}
+
+/* Основной контейнер новостей */
+.news-container {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px;
+    overflow-x: hidden; /* Убираем горизонтальный скролл */
+}
+
+/* Лента новостей с вертикальной прокруткой */
+.news-feed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    padding-top: 10px;
+}
+
+/* Карточка новости */
+.news-card {
+    width: 90%;
+    max-width: 700px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: visible;
+}
+
+/* Анимация появления */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.news-card {
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+/* Заголовок новости */
+.news-card .title {
+    font-size: 21px;
+    font-family: 'gillsansnews', Arial, sans-serif;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 8px;
+}
+
+/* Описание новости */
+.news-card .description {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+/* Блок изображений */
+.collage {
+    display: grid;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+/* Отображение фото в зависимости от количества */
+.collage img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* 1 фото – на всю ширину */
+.collage.one img {
+    width: 100%;
+    height: auto;
+}
+
+/* 2 фото – два изображения рядом */
+.collage.two {
+    grid-template-columns: repeat(2, 1fr);
+}
+.collage.two img {
+    height: 200px;
+}
+
+/* 3-4 фото – сетка 2x2 */
+.collage.three, .collage.four {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+}
+.collage.three img, .collage.four img {
+    height: 150px;
+}
+
+/* 5+ фото – первые 4 в сетке 2x2, остальные скрыты */
+.collage.five img:nth-child(n+5),
+.collage.six img:nth-child(n+5),
+.collage.seven img:nth-child(n+5),
+.collage.eight img:nth-child(n+5) {
+    display: none;
+}
+
+/* Кнопка "Показать еще" */
+.show-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    width: 100%;
+    height: 50px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Блок действий */
+.news-card .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.news-card:hover .actions {
+    opacity: 1;
+}
+
+/* Стили для кнопок лайков и комментариев */
+.news-card .actions div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.news-card .actions div:hover {
+    transform: translateY(-2px);
+}
+
+.news-card .actions div:active {
+    transform: scale(0.95);
+}
+
+/* Стили для иконок */
+.news-card .actions img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.news-card .actions div:hover img {
+    animation: subtleFloat 2s ease-in-out infinite;
+}
+
+/* Плавное появление карточек */
+@keyframes subtleFloat {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}
+
+/* 🔥 Стили кнопок "Одобрить" и "Удалить" в модерации */
+.news-card .moderation-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* Стили кнопок модерации */
+.news-card .approve-button,
+.news-card .delete-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Одобрить */
+.news-card .approve-button {
+    background-color: #28a745;
+    color: white;
+}
+
+.news-card .approve-button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+/* Удалить */
+.news-card .delete-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.news-card .delete-button:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+/* 🔥 Блок модерации (скрыт по умолчанию) */
+.hidden {
+    display: none !important;
+}
+
+/* 📌 Фиксированная шапка новостей */
+.news-container .header {
+    position: relative; /* Чтобы кнопка "+" позиционировалась относительно заголовка */
+    display: flex;
+    justify-content: center; /* Центрируем заголовок */
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Заголовок "FCK NEWS" */
+.news-container .header .title {
+    font-family: 'Wolfenstein', Arial, sans-serif;
+    font-size: 58px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center; /* Центрируем текст */
+    flex-grow: 1; /* Чтобы занял доступное пространство */
+}
+
+/* Кнопка "+" */
+.news-container .header .add-button {
+    position: absolute;
+    right: 20px; /* Прижимаем к правому краю */
+    top: 50%;
+    transform: translateY(-50%); /* Выравниваем по вертикали */
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Эффект при наведении */
+.news-container .header .add-button:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Уменьшил картинку "+" внутри */
+.news-container .header .add-button img {
+    width: 40px;
+    height: 40px;
+}
+
+.moderation-buttons {
+    display: flex !important; /* Включаем flex */
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+    visibility: visible !important; /* Делаем видимым */
+    opacity: 1 !important; /* Полностью показываем */
+    height: auto !important; /* Убираем возможное схлопывание */
+}
+
+
+.approve-button,
+.delete-button {
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.approve-button {
+    background-color: #28a745;
+    color: white;
+}
+
+.approve-button:hover {
+    background-color: #218838;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+/* Контейнер для списка комментариев */
+#comments-section {
+  margin-top: 20px;
+}
+
+/* Один комментарий */
+.comment-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+/* Аватар пользователя */
+.comment-item .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+/* Имя пользователя */
+.comment-item .username {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+/* Текст комментария */
+.comment-item p {
+  margin: 0;
+}
+
+/* Блок для добавления комментария */
+.add-comment {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#comment-input {
+  width: 100%;
+  min-height: 60px;
+  border-radius: 4px;
+  padding: 6px;
+  resize: vertical;
+}
+
+#comment-submit {
+  align-self: flex-end;
+  padding: 6px 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Левый контейнер для лайка + комментов */
+.left-actions {
+    display: flex;       /* горизонтальный флекс */
+    gap: 20px;           /* отступ между лайком и комментами */
+    align-items: center;
+}
+
+/* Правый контейнер для просмотров */
+.right-actions {
+    display: flex;
+    align-items: center;
+}
+
+.right-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.viewers-action {
+    pointer-events: none; /* Все клики игнорируются для этого блока */
+}

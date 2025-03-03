@@ -1,0 +1,289 @@
+/* static/css/main.css */
+
+/* Общий фон/контейнер */
+@font-face {
+    font-family: 'GillSansMoneyMenu';
+    src: url('/static/fonts/Gill Sans Light.otf') format('opentype');
+}
+
+#screen-main {
+    background-color: #e1e1e1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh; /* Гарантируем, что он занимает весь экран */
+}
+
+/* Шапка */
+#screen-main .top-bar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+/* Левая часть шапки */
+#screen-main .left-section {
+    display: flex;
+    align-items: center;
+}
+
+/* Аватар + ник (обёртка) */
+#screen-main .avatar-wrapper {
+    position: relative;
+    display: flex;
+    transform: translateY(20px);
+    align-items: center;
+    justify-content: center;
+}
+
+/* Собственно, аватар */
+#screen-main .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Серый «бейдж» с ником */
+#screen-main .username-pill {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #797979;
+    color: black;
+    font-size: 16px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Правая часть шапки */
+#screen-main .right-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Статус бейдж (уровень) */
+#screen-main .level-badge {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Круг (уровень) слева */
+#screen-main .level-circle {
+    width: 40px;
+    height: 40px;
+    background: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    z-index: 2;
+}
+
+/* Чёрная «пилюля» (контейнер), приклеенная к кругу */
+#screen-main .bar-container {
+    width: 60px;
+    height: 27px;
+    background: #000;
+    border-radius: 25px;
+    position: relative;
+    margin-left: -15px;
+}
+
+/* Полоса прогресса */
+#screen-main .progress-bar {
+    position: absolute;
+    top: 11px;
+    left: 0;
+    height: 5px;
+    width: 80%;
+    background: linear-gradient(to right, #ccc 50%, #666 50%);
+    border-radius: 10px;
+}
+
+/* Деньги (money-pill) */
+#screen-main .money-pill {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 20px;
+    padding: 0 20px 0 6px;
+    height: 32px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#screen-main .money-icon {
+    width: 80%;
+    height: 80%;
+}
+
+#screen-main .money-pill span {
+    font-family: "GillSansB", "Gill Sans MT", Calibri, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #d1d1d1;
+}
+
+/* Настройки (иконка шестерёнки) */
+#screen-main .settings-icon {
+    width: 48px;
+    height: 48px;
+    background-color: #000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(5px);
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#screen-main .settings-icon img {
+    width: 130%;
+    height: 130%;
+}
+
+#screen-main .settings-icon:hover {
+    background-color: #333;
+    transition: background-color 0.3s ease;
+}
+
+#screen-main .settings-icon:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+/* Центральный контент (3D) */
+#screen-main .center-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#screen-main .character-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateY(150px);
+}
+
+#screen-main #avatar-3d-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Модальное окно настроек */
+#screen-main .settings-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+#screen-main .settings-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    position: relative;
+}
+
+#screen-main .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* Заголовок в модальном окне */
+#screen-main .settings-content .header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#screen-main .icon-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+#screen-main .icon-button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Кнопки */
+#screen-main .button-container {
+    margin-top: 20px;
+}
+
+#screen-main .horizontal-button {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+#screen-main .button-left,
+#screen-main .button-right {
+    font-size: 16px;
+}
+
+#screen-main .help-button {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#screen-main .russian {
+    cursor: pointer;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    #screen-main .top-bar {
+        padding: 20px;
+    }
+    #screen-main .avatar {
+        width: 60px;
+        height: 60px;
+    }
+    #screen-main .money-pill {
+        padding: 0 12px;
+    }
+}

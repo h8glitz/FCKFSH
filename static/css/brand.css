@@ -1,0 +1,110 @@
+#screen-brand {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+}
+
+#screen-brand .container {
+    background: #e6e6e6;
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#screen-brand h1 {
+    text-align: center;
+    margin: 10px 30px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#screen-brand .add-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+#screen-brand .add-button img {
+    width: 160%;
+    height: 160%;
+    object-fit: contain;
+}
+
+#screen-brand .brand {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 8px;
+    border-radius: 40px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    margin: 15px auto;
+    position: relative;
+    padding-left: 55px;
+    width: 80%;
+    max-width: 280px;
+}
+
+#screen-brand .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #ddd;
+    position: absolute;
+    left: -18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#screen-brand .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#screen-brand .brand-info {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+#screen-brand .brand-title {
+    font-weight: bold;
+}
+
+#screen-brand .level {
+    background: #ccc;
+    color: white;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 3px;
+}
+
+#screen-brand .participants {
+    text-align: right;
+    color: #777;
+    font-size: 12px;
+}

@@ -1,0 +1,112 @@
+/* Стили для футера (footer.css или в теге <style>) */
+
+/* Определение шрифта */
+@font-face {
+    font-family: 'GillSansC';
+    src: url('../fonts/gillsansc.woff'); /* Для файлов, расположенных в соседней папке */
+}
+
+
+.bottom-nav {
+    display: flex;            /* ВАЖНО: Flex-контейнер */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 30px 30px 0 0;
+    z-index: 1000;
+}
+
+
+/* Стили для ссылок в футере */
+.bottom-nav a {
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    position: relative;
+}
+
+.bottom-nav a span {
+    display: block;
+    font-size: 10px;
+}
+
+/* Стили для иконок в футере */
+.bottom-nav .icon-container {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottom-nav .icon-container img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+/* Белый кружок вокруг иконки для выделенной кнопки (например, Новости) */
+.bottom-nav .highlight .icon-container {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    top: -10px;
+}
+
+.bottom-nav .highlight .icon-container img {
+    width: 50px;
+    height: 50px;
+}
+
+.bottom-nav .highlight span {
+    font-weight: bold;
+    position: relative;
+    top: -5px;
+    color:#c2c2c2;
+}
+
+/* Полукруговое выделение вокруг выделенной кнопки */
+.bottom-nav .highlight:before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 40px;
+    background-color: #000;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    z-index: -1;
+}
+
+/* Анимация нажатия */
+.bottom-nav a:active .icon-container {
+    transform: scale(0.9); /* Уменьшение размера при нажатии */
+    transition: transform 0.2s ease;
+}
+
+.bottom-nav a .icon-container {
+    transition: transform 0.2s ease;
+}
+
+/* Анимация подсветки при активации */
+.bottom-nav a.active .icon-container {
+    transform: scale(1.1); /* Легкое увеличение активной кнопки */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+

@@ -1,0 +1,45 @@
+<!-- footer.html -->
+<div class="bottom-nav" id="footer-area">
+    <a href="#main" class="main">
+        <div class="icon-container">
+            <img src="/static/icons/main.png" alt="Профиль">
+        </div>
+    </a>
+    <a href="#brand" class="brand">  <!-- Изменил с home на main и добавил корректный href -->
+        <div class="icon-container">
+            <img src="/static/icons/home.png" alt="Главная">
+        </div>
+    </a>
+    <a href="#news" class="news highlight">
+        <div class="icon-container">
+            <img src="/static/icons/news.png" alt="Новости">
+        </div>
+        <span>Новости</span>
+    </a>
+    <a href="#menu" class="menu">
+        <div class="icon-container">
+            <img src="/static/icons/menu.png" alt="Меню">
+        </div>
+    </a>
+    <a href="#friends" class="friends">
+        <div class="icon-container">
+            <img src="/static/icons/friends.png" alt="Друзья">
+        </div>
+    </a>
+</div>
+
+<script>
+    const footerButtons = document.querySelectorAll('.bottom-nav a');
+
+    footerButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            // Убираем preventDefault()
+
+            // Удалить "active" у всех
+            footerButtons.forEach(btn => btn.classList.remove('active'));
+
+            // Дать "active" текущей
+            button.classList.add('active');
+        });
+    });
+</script>

@@ -1,0 +1,135 @@
+/* static/css/menu.css */
+
+/* Подключаем шрифт */
+@font-face {
+    font-family: 'GillSansBold';
+    src: url('/static/fonts/gill-sans-ultra-bold.ttf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GillSans';
+    src: url('/static/fonts/Gill Sans Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+/* Общие стили для страницы меню */
+#screen-menu * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Контейнер секций */
+#screen-menu {
+    font-family: 'GillSansBold', Arial, sans-serif; /* Фикс шрифта */
+    background-color: #e1e1e1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    padding: 20px;
+    gap: 20px; /* Отступ между пунктами меню */
+}
+
+/* Анимация появления */
+@keyframes menuFadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 🔥 Стили для каждого пункта меню */
+#screen-menu .menu-item {
+    width: 85%;
+    max-width: 420px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 25px; /* Больше отступов */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    opacity: 0;
+    animation: menuFadeInUp 0.6s ease-out forwards;
+    transition: transform 0.2s ease-in-out;
+    gap: 15px; /* Отступ между иконкой и текстом */
+    margin-bottom: 15px; /* 🔥 Добавлен отступ между элементами */
+}
+
+/* Убираем последний отступ для последнего элемента */
+#screen-menu .menu-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Задержка появления */
+#screen-menu .menu-item:nth-child(1) { animation-delay: 0.1s; }
+#screen-menu .menu-item:nth-child(2) { animation-delay: 0.2s; }
+#screen-menu .menu-item:nth-child(3) { animation-delay: 0.3s; }
+#screen-menu .menu-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* Эффект наведения */
+#screen-menu .menu-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* Стили текста */
+#screen-menu .text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#screen-menu .menu-title {
+    font-family: 'GillSans', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 22px;
+    color: #696969;
+}
+
+#screen-menu .menu-description {
+    font-family: 'GillSans', Arial, sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    color: #696969;
+}
+
+/* Иконки */
+#screen-menu .icon {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#screen-menu .icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Медиа-запросы */
+@media (max-width: 768px) {
+    #screen-menu {
+        padding: 10px;
+    }
+    #screen-menu .menu-item {
+        width: 90%;
+    }
+}
+@media (max-width: 480px) {
+    #screen-menu .menu-item {
+        width: 95%;
+    }
+}

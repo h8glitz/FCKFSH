@@ -1,0 +1,92 @@
+<div id="screen-main">
+  <header class="top-bar">
+    <!-- Левая часть: аватар + ник в пилюле -->
+    <div class="left-section">
+      <div class="avatar-wrapper">
+<img id="user-avatar" src="/static/icons/default-avatar.png" alt="User Avatar" class="avatar">
+        <!-- Плашка с ником -->
+        <span id="user-nickname" class="username-pill">@user</span>
+      </div>
+    </div>
+
+    <!-- Правая часть: уровень, валюта, настройки -->
+    <div class="right-section">
+      <!-- Бейдж уровня / прогресса -->
+<!-- Контейнер для бейджа -->
+<div class="level-badge">
+  <div class="level-circle">2</div>
+  <div class="bar-container">
+    <div class="progress-bar"></div>
+  </div>
+</div>
+
+
+
+
+
+      <!-- Плашка денег с иконкой -->
+      <div class="money-pill">
+        <!-- Иконку денег подставьте свою: например, money.png -->
+        <img class="money-icon" src="/static/icons/glam.png" alt="Money">
+        <span>4657</span>
+      </div>
+      <!-- Настройки (шестерёнка) -->
+      <div class="settings-icon">
+        <img src="/static/icons/settings.png" alt="Settings">
+      </div>
+    </div>
+  </header>
+
+  <!-- Центральная часть с 3D (пример) -->
+  <div class="center-content">
+    <div class="character-container">
+      <div id="avatar-3d-container"></div>
+    </div>
+  </div>
+
+  <!-- Модальное окно настроек (скрыто по умолчанию) -->
+  <div class="settings-modal" id="settings-modal">
+    <div class="settings-content">
+      <span class="close-button" id="close-settings">
+        <img src="/static/icons/back.jpg" alt="Close">
+      </span>
+      <div class="header">Настройки</div>
+      <div class="icon-buttons">
+        <div class="icon-button">
+          <img src="/static/icons/icon1.png" alt="icon1">
+        </div>
+        <div class="icon-button">
+          <img src="/static/icons/icon2.png" alt="icon2">
+        </div>
+        <div class="icon-button">
+          <img src="/static/icons/icon3.png" alt="icon3">
+        </div>
+      </div>
+      <div class="button-container">
+        <div class="horizontal-button">
+          <div class="button-left">
+            <img src="/static/icons/sun-icon.png" alt="sun">Светлая
+            <br>Тема
+          </div>
+          <div class="button-right">
+            <img src="/static/icons/moon-icon.png" alt="moon">Тёмная
+            <br>Тема
+          </div>
+        </div>
+        <div class="horizontal-button">
+          <div class="button-left russian">Русский</div>
+          <div class="button-right russian">English</div>
+        </div>
+        <div class="help-button">
+          <img src="/static/icons/help-icon.png" alt="help">Помощь
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Скрипты Three.js и прочее -->
+<script src="/static/js/libs/three.module.js"></script>
+<script src="/static/js/libs/GLTFLoader.js"></script>
+<script src="/static/js/libs/OrbitControls.js"></script>
+<script src="/static/js/libs/DRACOLoader.js"></script>
