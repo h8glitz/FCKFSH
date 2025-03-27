@@ -5,7 +5,7 @@ import logging
 from urllib.parse import parse_qs
 
 from flask import Blueprint, render_template, request, jsonify, send_from_directory, redirect
-from db.models import save_user_data, get_user_by_id, News, db, Like, User, Comment, NewsView
+from db.models import save_user_data, get_user_by_id, News, db, Like, User, Comment, NewsView, Brand
 from fck_app.bot import BOT_TOKEN
 from datetime import datetime, timedelta
 
@@ -519,6 +519,22 @@ def add_news_view(news_id):
         "status": "success",
         "viewers_count": viewers_count
     }), 200
+
+@main_bp.route("/api/brands", methods=["GET"])
+def get_brands():
+    """Получение списка всех брендов"""
+    try:
+        brands = Brand.query.all()
+        return jsonify({
+            "status": "success",
+            "brands": [brand.to_dict() for brand in brands]
+        }), 200
+    except Exception as e:
+        logger.error(f"Ошибка при получении списка брендов: {e}")
+        return jsonify({
+            "status": "error",
+            "message": "Внутренняя ошибка сервера"
+        }), 500
 
 
 

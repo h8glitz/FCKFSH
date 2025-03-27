@@ -1,40 +1,23 @@
-<div id="screen-brand">
+<div class="brands-page">
+    <div class="header">
         <h1>Бренды</h1>
-        <div class="add-button">
-            <img src="icons/add-icon.png" alt="Добавить">
-        </div>
-
-        <div class="brand">
-            <div class="avatar">
-                <img src="icons/user-avatar.png" alt="Аватар">
-            </div>
-            <div class="brand-info">
-                <div class="brand-title">Название бренда</div>
-                <div class="level">7 ур.</div>
-            </div>
-            <div class="participants">Участники:<br>10/10</div>
-        </div>
-
-        <div class="brand">
-            <div class="avatar">
-                <img src="icons/user-avatar.png" alt="Аватар">
-            </div>
-            <div class="brand-info">
-                <div class="brand-title">Название бренда</div>
-                <div class="level">7 ур.</div>
-            </div>
-            <div class="participants">Участники:<br>10/10</div>
-        </div>
-
-        <div class="brand">
-            <div class="avatar">
-                <img src="icons/user-avatar.png" alt="Аватар">
-            </div>
-            <div class="brand-info">
-                <div class="brand-title">Название бренда</div>
-                <div class="level">7 ур.</div>
-            </div>
-            <div class="participants">Участники:<br>10/10</div>
-        </div>
+        <div class="add-button">+</div>
     </div>
-</body>
+    <div id="brands-container" class="brands-container">
+        <!-- Бренды будут добавляться динамически через JavaScript -->
+    </div>
+
+    <!-- Шаблон для бренда -->
+    <template id="brand-template">
+        <div class="brand">
+            <div class="avatar">
+                <img src="" alt="Аватар бренда">
+            </div>
+            <div class="brand-info">
+                <div class="brand-title"></div>
+                <div class="level"></div>
+            </div>
+            <div class="participants"></div>
+        </div>
+    </template>
+</div>

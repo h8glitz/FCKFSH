@@ -667,9 +667,6 @@ async function showNewsDetailsById(newsId) {
 // Инициализация на старте
 // ----------------------------------------------------------------------------------
 const newsPage = new NewsPage();
-window.NewsPage = {
-    init: () => newsPage.init(),
-    cleanup: () => newsPage.cleanup()
-};
+window.NewsPage = NewsPage;
 
-export default newsPage;
+export default NewsPage;

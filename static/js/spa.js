@@ -7,6 +7,13 @@ const ROUTES = {
     "friends": { template: "friends", script: "/static/js/pages/friends.js" },
     "brand": { template: "brand", script: "/static/js/pages/brand.js" },
     "menu": { template: "menu", script: "/static/js/pages/menu.js" },
+    // Добавляем недостающие маршруты
+    "shop": { template: "shop", script: "/static/js/pages/shop.js" },
+    "games": { template: "games", script: "/static/js/pages/games.js" },
+    "trade": { template: "trade", script: "/static/js/pages/trade.js" },
+    "clicker": { template: "clicker", script: "/static/js/pages/clicker.js" },
+    "display": { template: "display", script: "/static/js/pages/display.js" },
+    "create-brand": { template: "create-brand", script: "/static/js/pages/create-brand.js" }
 };
 
 // Класс для определения устройства и браузера
@@ -104,15 +111,30 @@ class ScriptLoader {
             script.type = 'module';
             script.src = scriptUrl;
             
-            script.onload = () => {
+            script.onload = async () => {
                 console.log(`[ScriptLoader] Скрипт загружен: ${scriptUrl}`);
                 const pageObjectName = this.getPageObjectName(routeName);
                 
-                if (window[pageObjectName]?.init) {
-                    console.log(`[ScriptLoader] Вызываем ${pageObjectName}.init()`);
-                    window[pageObjectName].init();
+                if (window[pageObjectName]) {
+                    console.log(`[ScriptLoader] Создаем экземпляр ${pageObjectName}`);
+                    try {
+                        const pageInstance = new window[pageObjectName]();
+                        if (pageInstance.init) {
+                            const container = document.getElementById(`screen-${routeName}`);
+                            if (container) {
+                                console.log(`[ScriptLoader] Вызываем ${pageObjectName}.init()`);
+                                pageInstance.init(container);
+                            } else {
+                                console.error(`[ScriptLoader] Контейнер screen-${routeName} не найден`);
+                            }
+                        } else {
+                            console.warn(`[ScriptLoader] Метод init не найден в ${pageObjectName}`);
+                        }
+                    } catch (error) {
+                        console.error(`[ScriptLoader] Ошибка при создании экземпляра ${pageObjectName}:`, error);
+                    }
                 } else {
-                    console.warn(`[ScriptLoader] Объект ${pageObjectName} или его метод init не найден`);
+                    console.warn(`[ScriptLoader] Объект ${pageObjectName} не найден`);
                 }
                 
                 resolve(scriptUrl);
@@ -129,8 +151,11 @@ class ScriptLoader {
     }
 
     static getPageObjectName(routeName) {
-        return routeName.charAt(0).toUpperCase() + 
-               routeName.slice(1).toLowerCase() + 'Page';
+        // Преобразуем kebab-case в PascalCase
+        return routeName
+            .split('-')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join('') + 'Page';
     }
 }
 
@@ -193,7 +218,7 @@ class Router {
     updateFooterVisibility(route) {
         const footer = document.getElementById('footer-container');
         if (footer) {
-            const showFooterRoutes = ['main', 'news','brand' , 'friends', 'menu'];
+            const showFooterRoutes = ['main', 'trade', 'news','brand' , 'friends', 'menu', 'shop', 'display', 'games'];
             footer.style.display = showFooterRoutes.includes(route) ? 'block' : 'none';
         }
     }

@@ -1,0 +1,148 @@
+.shop-container {
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: #e2e3e3;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.shop-header {
+    text-align: center;
+    background-color: #4a4a4a;
+    color: #fff;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.shop-header h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.shop-timer-container {
+    padding: 10px;
+    background-color: #e2e3e3;
+    position: sticky;
+    top: 58px;
+    z-index: 9;
+}
+
+.shop-timer {
+    font-size: 16px;
+    color: #555;
+    text-align: center;
+    margin: 0;
+}
+
+.shop-content {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+    height: calc(100vh - 108px);
+}
+
+.shop-section {
+    margin-bottom: 15px;
+}
+
+.shop-section-packs {
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 8px solid #d5d5d5;
+}
+
+.shop-item {
+    display: flex;
+    background-color: white;
+    border-radius: 15px;
+    margin: 10px 15px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.shop-item-image {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.shop-item-image img {
+    width: 80%;
+    height: auto;
+    object-fit: contain;
+}
+
+.shop-item-info {
+    flex-grow: 1;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.shop-item-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+}
+
+.shop-title-line {
+    height: 4px;
+    background: linear-gradient(to right, #b000ff, #c159e9);
+    flex-grow: 1;
+    margin-left: 10px;
+    border-radius: 2px;
+}
+
+.shop-item-description {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.shop-price-tag {
+    display: flex;
+    align-items: center;
+    background-color: #555;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    margin-left: auto;
+    margin-top: auto;
+}
+
+.money-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.shop-get-button {
+    background-color: #4a4a4a;
+    color: white;
+    border: none;
+    padding: 8px 25px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    cursor: pointer;
+    align-self: flex-end;
+}

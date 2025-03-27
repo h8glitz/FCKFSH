@@ -12,15 +12,13 @@ class BaseConfig:
 class ProductionConfig(BaseConfig):
     PUBLIC_URL = "https://fckfsh.ru"
     DEBUG = False
-    # Заменяем на PostgreSQL URI
     DATABASE_URI = "postgresql://my_user:9044@localhost:5432/fckfshdb"
 
 
 class DevelopmentConfig(BaseConfig):
     PUBLIC_URL = "http://localhost:5000"
     DEBUG = True
-    # Тут тоже можно PostgreSQL, если хотите тестировать на локальном PostgreSQL
-    # Или оставить SQLite, если удобнее
+    # Используем SQLite для локальной разработки
     DATABASE_URI = "postgresql://my_user:9044@localhost:5432/fckfshdb"
 
 

@@ -7,6 +7,7 @@ import logging
 
 from flask import Flask, request, redirect, send_from_directory
 from werkzeug.middleware.proxy_fix import ProxyFix
+from flask_migrate import Migrate
 
 from config import Config
 from fck_app.bot import run_bot
@@ -55,12 +56,18 @@ def create_app(config_class=Config):
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     db.init_app(app)
+    migrate = Migrate(app, db)  # Инициализация Flask-Migrate
     app.wsgi_app = ProxyFix(app.wsgi_app, x_for=2, x_proto=2, x_host=1, x_prefix=1, x_port=1)
 
     app.register_blueprint(main_bp)
 
     with app.app_context():
         db.create_all()
+        # Выводим все зарегистрированные маршруты
+        print("\nЗарегистрированные маршруты:")
+        for rule in app.url_map.iter_rules():
+            print(f"{rule.endpoint}: {rule.methods} {rule}")
+        print("\n")
 
     @app.before_request
     def before_request():
@@ -75,7 +82,7 @@ def create_app(config_class=Config):
 
     return app
 
-def wait_for_server(timeout=30):
+def wait_for_server(timeout=1000):
     print("[SERVER] Ожидание запуска Flask-сервера...")
     start_time = time.time()
     while time.time() - start_time < timeout:
@@ -105,7 +112,7 @@ def check_tunnel_health(timeout=30):
 
 def start_cloudflare_tunnel():
     try:
-        if not FLASK_READY.wait(timeout=30):
+        if not FLASK_READY.wait(timeout=900):
             raise Exception("Flask сервер не готов")
         print("[CLOUDFLARE] Запуск Cloudflare Tunnel...")
         tunnel_process = subprocess.Popen(

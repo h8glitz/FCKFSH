@@ -15,7 +15,6 @@ footerButtons.forEach(button => {
         // Получаем маршрут из data-атрибута
         const route = button.dataset.route;
         console.log(`[Footer] Переход на страницу: ${route}`);
-
         if (route) {
             window.location.hash = route;
         } else {

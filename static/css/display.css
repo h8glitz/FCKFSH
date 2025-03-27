@@ -1,0 +1,119 @@
+.screen-display {
+  font-family: 'Gill Sans', sans-serif;
+  background-color: #e2e2e2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.screen-display .display {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.screen-display .main-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.screen-display .show-header {
+  position: relative;
+  width: 100%;
+  margin: 0;
+}
+
+.screen-display .show-header img {
+  width: 100%;
+  display: block;
+  border-radius: 30px 30px 0 0;
+  margin-bottom: -20px;
+  position: relative;
+  z-index: 1;
+}
+
+.screen-display .show-card {
+  background: white;
+  border-radius: 0 0 30px 30px;
+  margin: 0 auto 30px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.screen-display .content {
+  padding: 25px 10px 10px 10px;
+}
+
+.screen-display .brand-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+  line-height: 1;
+}
+
+.screen-display .brand-logo {
+  height: 40px;
+}
+
+.screen-display .description {
+  font-size: 15px;
+  font-weight: 600;
+  color: #494949;
+  text-align: left;
+  margin-bottom: 2px;
+}
+
+.screen-display .info {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #494949;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.screen-display .info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.screen-display .info img {
+  height: 30px;
+}
+
+.screen-display .participate-btn {
+  background: #424242;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 10px 1px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  margin: 18px auto;
+  margin-bottom: 0;
+  width: 50%;
+}

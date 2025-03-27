@@ -1,0 +1,141 @@
+<div id="screen-create-brand">
+    <h1>Создание бренда</h1>
+    
+    <form id="create-brand-form" class="brand-form">
+        <div class="form-group">
+            <label for="brand-name">Название бренда</label>
+            <input type="text" id="brand-name" name="name" required 
+                   placeholder="Введите название бренда" maxlength="255">
+        </div>
+
+        <div class="form-group">
+            <label>Стоимость создания:</label>
+            <div class="cost-info">
+                <span class="glams">1000 глэмов</span>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="button" class="cancel-btn" onclick="window.location.href='#brand'">Отмена</button>
+            <button type="submit" class="create-btn">Создать</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('create-brand-form');
+    
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const brandName = document.getElementById('brand-name').value.trim();
+        
+        if (!brandName) {
+            alert('Пожалуйста, введите название бренда');
+            return;
+        }
+        
+        try {
+            const response = await fetch('/api/brands', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: brandName
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (data.status === 'success') {
+                // Переходим на страницу созданного бренда
+                window.location.href = `#brand/${data.brand.id}`;
+            } else {
+                alert(data.message || 'Ошибка при создании бренда');
+            }
+        } catch (error) {
+            console.error('Ошибка при создании бренда:', error);
+            alert('Произошла ошибка при создании бренда');
+        }
+    });
+});
+</script>
+
+<style>
+#screen-create-brand {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.brand-form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.cost-info {
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 5px;
+}
+
+.glams {
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.cancel-btn, .create-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.cancel-btn {
+    background: #f1f1f1;
+    color: #333;
+}
+
+.create-btn {
+    background: #4CAF50;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background: #e0e0e0;
+}
+
+.create-btn:hover {
+    background: #45a049;
+}
+</style> 

@@ -1,0 +1,27 @@
+<div class="screen-trade">
+        <div class="screen-trade__header">
+            <div class="screen-trade__title">Обмен</div>
+            <div class="screen-trade__toggle" onclick="toggleSwitch(this)">
+                <div class="screen-trade__toggle-circle"></div>
+            </div>
+        </div>
+
+        <div class="screen-trade__empty-state">
+            <div class="screen-trade__empty-state-line">
+                <img src="../static/icons/exchange.png" alt="No Trade" class="screen-trade__empty-state-icon">
+                <span>У вас пока нет предложений</span>
+            </div>
+            <span class="screen-trade__empty-state-text">обмена</span>
+        </div>
+
+        <button class="screen-trade__trade-button">
+            <img src="../static/icons/exchange.png" alt="Trade Icon" class="screen-trade__trade-button-icon">
+            Отправить обмен
+        </button>
+    </div>
+
+    <script>
+        function toggleSwitch(element) {
+            element.classList.toggle("active");
+        }
+    </script>
