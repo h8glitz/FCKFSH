@@ -1,23 +1,45 @@
-<div class="brands-page">
-    <div class="header">
-        <h1>Бренды</h1>
-        <div class="add-button">+</div>
+<div class="screen-brand">
+    <div class="exit-icon">
+      <a href="#main">
+        <img src="/static/icons/back.jpg" alt="exit-icon">
+      </a>
     </div>
-    <div id="brands-container" class="brands-container">
-        <!-- Бренды будут добавляться динамически через JavaScript -->
+    <div class="profile-container">
+      <div class="profile-circle"></div>
+      <div class="profile-edit">Изм.</div>
     </div>
-
-    <!-- Шаблон для бренда -->
-    <template id="brand-template">
-        <div class="brand">
-            <div class="avatar">
-                <img src="" alt="Аватар бренда">
-            </div>
-            <div class="brand-info">
-                <div class="brand-title"></div>
-                <div class="level"></div>
-            </div>
-            <div class="participants"></div>
+    <div class="brand-header">
+      <span id="brand-name">Название бренда</span><span class="edit">Изм.</span>
+    </div>
+    <div class="description">
+      <span id="brand-description">Описание</span><span class="edit">Изм.</span>
+    </div>
+    <div class="progress-container">
+      <div class="progress-circle">
+        <span class="two-text">2</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+      </div>
+    </div>
+    <div class="stats-wrapper">
+      <div class="text-container">
+        <span><div class="color-dot green-dot"></div> Репутация - <span id="reputation-value"></span></span>
+        <span><div class="color-dot purple-dot"></div> Рентабельность - <span id="profitability-value"></span></span>
+        <span><div class="color-dot yellow-dot"></div> Инновативность - <span id="innovation-value"></span></span>
+      </div>
+      <div class="progress-bars">
+        <div class="stat-bar">
+          <div class="fill green-fill" id="reputation-bar"></div>
         </div>
-    </template>
-</div>
+        <div class="stat-bar">
+          <div class="fill purple-fill" id="profitability-bar"></div>
+        </div>
+        <div class="stat-bar">
+          <div class="fill yellow-fill" id="innovation-bar"></div>
+        </div>
+      </div>
+    </div>
+    <div class="roles" id="roles-container">
+    </div>
+  </div>

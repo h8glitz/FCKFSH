@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="MobileOptimized" content="176">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Инвентарь</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="/static/css/inventory.css">
+    <script src="/static/js/pages/inventory.js" defer></script>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="page-header">
+            <button class="back-button" onclick="window.history.back()">←</button>
+            <h1 class="page-title">Инвентарь</h1>
+        </div>
+
+        <div class="page-content">
+            <div class="categories-wrapper">
+                <div class="categories-scroll">
+                    <button class="category-button active" data-category="all">
+                        <img src="/static/icons/all.png" alt="Все">
+                        <span>Все</span>
+                    </button>
+                    <button class="category-button" data-category="pants">
+                        <img src="/static/icons/pants.png" alt="Штаны">
+                        <span>Штаны</span>
+                    </button>
+                    <button class="category-button" data-category="shirts">
+                        <img src="/static/icons/shirts.png" alt="Рубашки">
+                        <span>Рубашки</span>
+                    </button>
+                    <button class="category-button" data-category="shoes">
+                        <img src="/static/icons/shoes.png" alt="Обувь">
+                        <span>Обувь</span>
+                    </button>
+                    <button class="category-button" data-category="accessories">
+                        <img src="/static/icons/accessories.png" alt="Аксессуары">
+                        <span>Аксессуары</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="items-wrapper">
+                <div class="items-grid" id="inventoryItems">
+                    <!-- Предметы будут добавлены через JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="error-message" id="errorMessage" style="display: none;">
+        <div class="error-content">
+            <span class="error-text"></span>
+            <button class="error-close">×</button>
+        </div>
+    </div>
+</body>
+</html> 

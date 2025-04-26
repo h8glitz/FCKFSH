@@ -23,6 +23,83 @@
     <link rel="stylesheet" href="/static/css/clicker.css">
     <link rel="stylesheet" href="/static/css/display.css">
     <link rel="stylesheet" href="/static/css/trade.css">
+    <link rel="stylesheet" href="/static/css/create-brand.css">
+    <link rel="stylesheet" href="/static/css/list-brand.css">
+    <link rel="stylesheet" href="/static/css/inventory.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        // Сразу проверяем и сохраняем user_id из URL параметров
+        document.addEventListener('DOMContentLoaded', function() {
+            // Проверяем URL параметры
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('user_id');
+            
+            if (userId) {
+                console.log('[Index] Найден user_id в URL параметрах:', userId);
+                // Сохраняем в sessionStorage
+                sessionStorage.setItem('user_id', userId);
+                // Сохраняем в глобальной переменной для доступа из других скриптов
+                window.USER_ID = userId;
+                
+                // Добавляем функцию для обновления хэш-ссылок, чтобы включать user_id
+                window.addEventListener('hashchange', function() {
+                    const currentHash = window.location.hash;
+                    if (!currentHash.includes('user_id=')) {
+                        // При изменении хэша добавляем параметр user_id, если его нет
+                        const separator = currentHash.includes('?') ? '&' : '?';
+                        const newHash = `${currentHash}${separator}user_id=${userId}`;
+                        console.log('[Index] Обновляем хэш с user_id:', newHash);
+                        // window.location.hash = newHash;
+                    }
+                });
+            }
+            
+            // Проверяем, что Telegram WebApp доступен и инициализирован
+            if (window.Telegram && window.Telegram.WebApp) {
+                // Дожидаемся готовности WebApp
+                window.Telegram.WebApp.ready();
+                
+                // Теперь пытаемся получить данные пользователя
+                let tgUser = null;
+                if (window.Telegram.WebApp.initDataUnsafe?.user) {
+                    tgUser = window.Telegram.WebApp.initDataUnsafe.user;
+                    console.log('[Index] Данные из Telegram:', tgUser);
+                    
+                    // Сохраняем id пользователя в sessionStorage для использования в других модулях
+                    if (tgUser.id) {
+                        sessionStorage.setItem('user_id', tgUser.id);
+                        // Также сохраняем в глобальной переменной для резервного доступа
+                        window.USER_ID = tgUser.id;
+                        console.log('[Index] ID пользователя сохранен из Telegram:', tgUser.id);
+                        
+                        // Сохраняем полные данные пользователя для возможного использования
+                        sessionStorage.setItem('telegram_user', JSON.stringify(tgUser));
+                        
+                        // Отправляем данные пользователя на сервер для инициализации/обновления
+                        fetch('/get_user_data', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                id: tgUser.id,
+                                user: tgUser
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('[Index] Данные пользователя успешно отправлены на сервер');
+                        })
+                        .catch(error => {
+                            console.error('[Index] Ошибка отправки данных пользователя:', error);
+                        });
+                    }
+                } else {
+                    console.log('[Index] Данные пользователя из Telegram недоступны');
+                }
+            } else {
+                console.log('[Index] Telegram WebApp не инициализирован');
+            }
+        });
+    </script>
 </head>
 <body>
     <div id="app">
@@ -32,63 +109,40 @@
         <div id="screen-news"></div>
         <div id="screen-friends"></div>
         <div id="screen-brand"></div>
+        <div id="screen-create-brand"></div>
+        <div id="screen-list-brand"></div>
         <div id="screen-menu"></div>
         <div id="screen-shop"></div>
         <div id="screen-games"></div>
         <div id="screen-trade"></div>
         <div id="screen-clicker"></div>
         <div id="screen-display"></div>
-        <div id="screen-create-brand"></div>
         <div id="footer-container"></div>
     </div>
 
     <!-- Подключение Telegram Web Apps API -->
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const tg = window.Telegram.WebApp;
-            tg.ready(); // Ждем, пока API загрузится
+        // Получаем объект Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        // Блокировка свайпов и жестов
+        document.addEventListener("touchmove", function(event) {
+            event.preventDefault();
+        }, { passive: false });
 
-            function requestFullscreen() {
-                if (tg.isExpanded) {
-                    console.log("Приложение уже расширено.");
-                } else {
-                    console.log("Запрос на раскрытие...");
-                    tg.expand();
-                }
-
-                if (!tg.isFullscreen) {
-                    console.log("Запрос на полноэкранный режим...");
-                    tg.requestFullscreen();
-                }
-            }
-
-            // Ждем стабилизации viewport перед вызовом expand() и requestFullscreen()
-            function checkViewport() {
-                if (tg.viewportStableHeight && tg.isExpanded) {
-                    console.log("Viewport стабилизирован. Разворачиваем...");
-                    requestFullscreen();
-                } else {
-                    console.log("Ожидание стабилизации viewport...");
-                    setTimeout(checkViewport, 100);
-                }
-            }
-
-            setTimeout(checkViewport, 100);
-
-            // Блокировка свайпов и жестов
-            document.addEventListener("touchmove", function(event) {
-                event.preventDefault();
-            }, { passive: false });
-
-            document.addEventListener("gesturestart", function(event) {
-                event.preventDefault();
-            });
-
-            // Отключение закрытия по свайпу вниз в Telegram Web Apps
-            tg.disableClosingConfirmation();
+        document.addEventListener("gesturestart", function(event) {
+            event.preventDefault();
         });
+
+        // Отключение закрытия по свайпу вниз в Telegram Web Apps
+        tg.disableClosingConfirmation();
     </script>
     <script src="/static/js/spa.js"></script>
+    <!-- Основная библиотека Babylon.js -->
+    <!-- Основная библиотека Babylon.js -->
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <!-- Загрузчики моделей (включая GLTF) -->
+    <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+    <!-- Поддержка сжатия Draco (опционально) -->
+    <script src="https://cdn.babylonjs.com/serializers/babylonjs.serializers.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,7 @@
+tunnel: 3794b256-70f9-4f6c-a5a9-6ae640e8854b
+credentials-file: C:\Users\%USERNAME%\.cloudflared\3794b256-70f9-4f6c-a5a9-6ae640e8854b.json
+
+ingress:
+  - hostname: fckfsh.ru
+    service: http://localhost:5000
+  - service: http_status:404 

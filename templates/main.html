@@ -6,25 +6,17 @@
 <img id="user-avatar" src="/static/icons/default-avatar.png" alt="User Avatar" class="avatar">
         <!-- Плашка с ником -->
         <span id="user-nickname" class="username-pill">@user</span>
+        <div class="level-circle">2</div>
       </div>
     </div>
-
     <!-- Правая часть: уровень, валюта, настройки -->
     <div class="right-section">
-      <!-- Бейдж уровня / прогресса -->
-<!-- Контейнер для бейджа -->
-<div class="level-badge">
-  <div class="level-circle">2</div>
-  <div class="bar-container">
-    <div class="progress-bar"></div>
-  </div>
-</div>
-
-
-
-
-
       <!-- Плашка денег с иконкой -->
+      <div class="money-pill">
+        <!-- Иконку денег подставьте свою: например, money.png -->
+        <img class="money-icon" src="/static/icons/glam.png" alt="Money">
+        <span>4657</span>
+      </div>
       <div class="money-pill">
         <!-- Иконку денег подставьте свою: например, money.png -->
         <img class="money-icon" src="/static/icons/glam.png" alt="Money">
@@ -36,14 +28,12 @@
       </div>
     </div>
   </header>
-
   <!-- Центральная часть с 3D (пример) -->
   <div class="center-content">
     <div class="character-container">
       <div id="avatar-3d-container"></div>
     </div>
   </div>
-
   <!-- Модальное окно настроек (скрыто по умолчанию) -->
   <div class="settings-modal" id="settings-modal">
     <div class="settings-content">
@@ -90,3 +80,5 @@
 <script src="/static/js/libs/GLTFLoader.js"></script>
 <script src="/static/js/libs/OrbitControls.js"></script>
 <script src="/static/js/libs/DRACOLoader.js"></script>
+<script src="/static/js/pages/main.js"></script>
+<script src="/static/js/init.js"></script>

@@ -1,9 +1,11 @@
-tunnel: 6eeeb1a7-3773-4e7d-bd44-8c8477151bc4
-credentials-file: C:\Users\h8glitz\.cloudflared\6eeeb1a7-3773-4e7d-bd44-8c8477151bc4.json
+tunnel: 3794b256-70f9-4f6c-a5a9-6ae640e8854b
+credentials-file: C:\Users\h8glitz\.cloudflared\3794b256-70f9-4f6c-a5a9-6ae640e8854b.json
 
 ingress:
   - hostname: fckfsh.ru
-    service: http://127.0.0.1:5000
+    service: http://localhost:5000
+  - hostname: www.fckfsh.ru
+    service: http://localhost:5000
   - service: http_status:404
 
 originRequest:

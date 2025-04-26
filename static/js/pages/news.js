@@ -53,8 +53,14 @@ const DOMUtils = {
         collageDiv.classList.add(layoutClasses[Math.min(mediaUrls.length, 5)]);
 
         mediaUrls.forEach((url, index) => {
+            let fixedUrl = url;
+            if (url.includes('fckfsh.ru/')) {
+                fixedUrl = '/' + url.split('fckfsh.ru/')[1];
+            } else if (!url.startsWith('/')) {
+                fixedUrl = '/' + url;
+            }
             const imgElem = document.createElement("img");
-            imgElem.src = url;
+            imgElem.src = fixedUrl;
             imgElem.alt = "News Image";
             if (index >= 4) imgElem.style.display = "none";
             collageDiv.appendChild(imgElem);
@@ -169,7 +175,11 @@ class NewsUI {
                 const parsed = JSON.parse(image_url);
                 mediaUrls = Array.isArray(parsed) ? parsed : [image_url];
             } catch (e) {
-                mediaUrls = [image_url];
+                if (image_url.includes(',')) {
+                    mediaUrls = image_url.split(',').map(url => url.trim());
+                } else {
+                    mediaUrls = [image_url];
+                }
             }
             containerDiv.appendChild(DOMUtils.createMediaCollage(mediaUrls));
         }
@@ -497,7 +507,11 @@ class NewsPage {
                 const parsed = JSON.parse(newsItem.image_url);
                 mediaUrls = Array.isArray(parsed) ? parsed : [newsItem.image_url];
             } catch (e) {
-                mediaUrls = [newsItem.image_url];
+                if (newsItem.image_url.includes(',')) {
+                    mediaUrls = newsItem.image_url.split(',').map(url => url.trim());
+                } else {
+                    mediaUrls = [newsItem.image_url];
+                }
             }
             cardContainer.appendChild(DOMUtils.createMediaCollage(mediaUrls));
         }

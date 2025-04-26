@@ -1,0 +1,167 @@
+@font-face {
+    font-family: 'Gill Sans Bold';
+    src: url('fonts/Gill Sans Bold!.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Gill Sans Regular';
+    src: url('fonts/ofont.ru_Gill Sans.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Gill Sans Button';
+    src: url('fonts/gillsans1.ttf') format('truetype');
+}
+
+.screen-create-brand {
+    margin: 0;
+    font-family: 'Gill Sans Regular', Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #e6e6e6;
+    width: 100%;
+}
+
+.screen-create-brand .container {
+    width: 100%;
+    height: 100%;
+    background-color: #e3e3e2;
+    border-radius: 20px;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    max-width: none;
+}
+
+.screen-create-brand .header {
+    font-family: 'Gill Sans Bold', Arial, sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    margin-top: 80px;
+    color: #020202;
+}
+
+.screen-create-brand .subheader {
+    font-family: 'Gill Sans Regular', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #848485;
+    margin-bottom: 15px;
+    text-align: center;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.screen-create-brand .avatar-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.screen-create-brand .logo-container {
+    font-family: 'Gill Sans Regular', Arial, sans-serif;
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px auto 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    position: relative;
+}
+
+.screen-create-brand .logo-container input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+}
+
+.screen-create-brand .logo-label {
+    font-family: 'Gill Sans Regular', Arial, sans-serif;
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.screen-create-brand .input-container {
+    font-family: 'Gill Sans Regular', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    color: #e3e3e2;
+}
+
+.screen-create-brand .input-container input {
+    font-family: 'Gill Sans Regular', Arial, sans-serif;
+    width: 85%;
+    padding: 14px;
+    font-size: 16px;
+    border: 2px solid #888;
+    border-radius: 30px;
+    outline: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.screen-create-brand .button {
+    font-family: 'Gill Sans Button', Arial, sans-serif;
+    width: 100%;
+    padding: 15px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #333;
+    background-color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 200px;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.screen-create-brand .button:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.screen-create-brand .back-button {
+    position: absolute;
+    top: 25px;
+    left: 15px;
+    width: 30px;
+    height: 30px;
+}
+
+.screen-create-brand .back-button img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.screen-create-brand .logo-container img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+} 

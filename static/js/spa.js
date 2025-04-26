@@ -5,15 +5,17 @@ const ROUTES = {
     "unsupported": { template: "unsupported", script: "/static/js/pages/unsupported.js" },
     "news": { template: "news", script: "/static/js/pages/news.js" },
     "friends": { template: "friends", script: "/static/js/pages/friends.js" },
+    "list-brand": { template: "list-brand", script: "/static/js/pages/list-brand.js" },
+    "create-brand": { template: "create-brand", script: "/static/js/pages/create-brand.js" },
     "brand": { template: "brand", script: "/static/js/pages/brand.js" },
+    "my-brand": { template: "brand", script: "/static/js/pages/brand.js" },
     "menu": { template: "menu", script: "/static/js/pages/menu.js" },
     // Добавляем недостающие маршруты
     "shop": { template: "shop", script: "/static/js/pages/shop.js" },
     "games": { template: "games", script: "/static/js/pages/games.js" },
     "trade": { template: "trade", script: "/static/js/pages/trade.js" },
     "clicker": { template: "clicker", script: "/static/js/pages/clicker.js" },
-    "display": { template: "display", script: "/static/js/pages/display.js" },
-    "create-brand": { template: "create-brand", script: "/static/js/pages/create-brand.js" }
+    "display": { template: "display", script: "/static/js/pages/display.js" }
 };
 
 // Класс для определения устройства и браузера
@@ -120,12 +122,17 @@ class ScriptLoader {
                     try {
                         const pageInstance = new window[pageObjectName]();
                         if (pageInstance.init) {
-                            const container = document.getElementById(`screen-${routeName}`);
+                            // Получаем контейнер с учетом специальных маршрутов
+                            let containerId = `screen-${routeName}`;
+                            if (routeName === 'my-brand') {
+                                containerId = 'screen-brand';
+                            }
+                            const container = document.getElementById(containerId);
                             if (container) {
                                 console.log(`[ScriptLoader] Вызываем ${pageObjectName}.init()`);
-                                pageInstance.init(container);
+                                await pageInstance.init(container);
                             } else {
-                                console.error(`[ScriptLoader] Контейнер screen-${routeName} не найден`);
+                                console.error(`[ScriptLoader] Контейнер ${containerId} не найден`);
                             }
                         } else {
                             console.warn(`[ScriptLoader] Метод init не найден в ${pageObjectName}`);
@@ -151,7 +158,18 @@ class ScriptLoader {
     }
 
     static getPageObjectName(routeName) {
-        // Преобразуем kebab-case в PascalCase
+        // Специальные случаи для маршрутов
+        const routeToClassMap = {
+            'create-brand': 'CreateBrandPage',
+            'brand': 'BrandPage',
+            'my-brand': 'BrandPage'
+        };
+
+        if (routeToClassMap[routeName]) {
+            return routeToClassMap[routeName];
+        }
+
+        // Преобразуем kebab-case в PascalCase для остальных маршрутов
         return routeName
             .split('-')
             .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
@@ -172,6 +190,11 @@ class Router {
         const route = hash.split(/[?&]/)[0];
         console.log(`[Router] Определён маршрут: '${route}'`);
         
+        // Проверяем маршруты с параметрами
+        if (route.startsWith('my-brand/')) {
+            return 'my-brand';
+        }
+        
         if (!ROUTES[route]) {
             console.warn(`[Router] Неизвестный маршрут: '${route}', загружаем 'loading'`);
             return "loading";
@@ -187,8 +210,13 @@ class Router {
             return;
         }
 
-        const container = document.getElementById(`screen-${routeConfig.template}`);
-        console.log(`[Router] Контейнер найден? ${!!container}`);
+        // Получаем ID контейнера с учетом специальных маршрутов
+        let containerId = `screen-${routeConfig.template}`;
+        if (route === 'my-brand') {
+            containerId = 'screen-brand';
+        }
+        const container = document.getElementById(containerId);
+        console.log(`[Router] Контейнер ${containerId} найден? ${!!container}`);
 
         const content = await TemplateManager.loadTemplate(routeConfig.template);
         if (!content) {
@@ -210,6 +238,12 @@ class Router {
     }
 
     showScreen(container, content) {
+        if (!container) {
+            console.error('[Router] Ошибка: контейнер не найден');
+            return;
+        }
+
+        console.log('[Router] Отображение экрана:', container.id);
         container.style.display = 'flex';
         container.classList.add('active-screen');
         container.innerHTML = content;
@@ -218,7 +252,7 @@ class Router {
     updateFooterVisibility(route) {
         const footer = document.getElementById('footer-container');
         if (footer) {
-            const showFooterRoutes = ['main', 'trade', 'news','brand' , 'friends', 'menu', 'shop', 'display', 'games'];
+            const showFooterRoutes = ['main', 'trade', 'news', 'brand', 'create-brand', 'friends', 'menu', 'shop', 'display', 'games', 'list-brand'];
             footer.style.display = showFooterRoutes.includes(route) ? 'block' : 'none';
         }
     }
@@ -289,6 +323,26 @@ class App {
 
 // Запуск приложения
 window.addEventListener('DOMContentLoaded', () => {
+    // Принудительное обновление при загрузке страницы
+    if (window.performance && window.performance.navigation.type === window.performance.navigation.TYPE_RELOAD) {
+        console.log('[SPA] Принудительное обновление страницы');
+        // Очищаем кэш для всех скриптов и стилей
+        const scripts = document.getElementsByTagName('script');
+        const styles = document.getElementsByTagName('link');
+        
+        for (let script of scripts) {
+            if (script.src) {
+                script.src = script.src + (script.src.includes('?') ? '&' : '?') + 'nocache=' + new Date().getTime();
+            }
+        }
+        
+        for (let style of styles) {
+            if (style.href) {
+                style.href = style.href + (style.href.includes('?') ? '&' : '?') + 'nocache=' + new Date().getTime();
+            }
+        }
+    }
+
     const app = new App();
     app.init();
 });

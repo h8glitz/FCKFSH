@@ -34,3 +34,4 @@ class TradePage {
 
 // Делаем класс доступным глобально
 window.TradePage = TradePage;
+

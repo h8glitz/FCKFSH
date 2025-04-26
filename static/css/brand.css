@@ -1,109 +1,418 @@
-#screen-brand {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+@font-face {
+    font-family: 'GillSans';
+    src: url('fonts/ofont.ru_Gill Sans.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  
+  .screen-brand {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 0;
-    margin: 0;
     height: 100vh;
-}
-
-#screen-brand .container {
-    background: #e6e6e6;
     width: 100%;
-    max-width: 500px;
-    height: 100%;
-    padding: 20px;
-    border-radius: 20px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     position: relative;
-    box-sizing: border-box;
+    background-color: #eaeaea;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .brand-container {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-
-#screen-brand h1 {
-    text-align: center;
-    margin: 10px 30px;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-#screen-brand .add-button {
+    min-height: 100%;
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  .screen-brand .exit-button {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 30px;
-    height: 30px;
-    background: white;
-    border-radius: 50%;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .screen-brand .profile-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    overflow: hidden;
-}
-
-#screen-brand .add-button img {
-    width: 160%;
-    height: 160%;
-    object-fit: contain;
-}
-
-#screen-brand .brand {
-    display: flex;
-    align-items: center;
-    background: white;
-    padding: 8px;
-    border-radius: 40px;
-    margin: 15px auto;
+    margin-bottom: 20px;
     position: relative;
-    padding-left: 55px;
-    max-width: 280px;
-}
-
-#screen-brand .avatar {
+  }
+  
+  .screen-brand .profile-circle {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: #ddd;
+    background: #fff; /* Белый фон */
+    border: 2px solid #000; /* Чёрный контур */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #777;
+    position: relative; /* Для кнопки */
+  }
+  
+  .screen-brand .profile-edit {
+    font-size: 12px;
+    color: #333;
+    background-color: #ddd;
+    padding: 3px 8px;
+    border-radius: 15px;
+    font-weight: bold;
+    cursor: pointer;
     position: absolute;
-    left: -18px;
+    top: 70px; /* Расположить кнопку ближе к верхней части */
+    right: 115px; /* Расположить вплотную к правому краю круга */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .screen-brand .brand-header {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  
+  .screen-brand .edit {
+    font-size: 14px;
+    color: #333;
+    background-color: #ddd;
+    padding: 5px 10px;
+    border-radius: 15px;
+    display: inline-block;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .screen-brand .description {
+    font-size: 22px;
+    color: black;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .screen-brand .progress-container {
     display: flex;
     align-items: center;
+    margin-left: 60px;
+    margin-bottom: 20px;
+  }
+  
+  .screen-brand .progress-circle {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
     justify-content: center;
-    overflow: hidden;
-}
-
-#screen-brand .avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-#screen-brand .brand-info {
-    flex-grow: 1;
-    margin-left: 10px;
-}
-
-#screen-brand .brand-title {
+    align-items: center;
+    font-size: 14px;
     font-weight: bold;
-}
-
-#screen-brand .level {
+    color: #333;
+    margin-right: -10px;
+    z-index: 2;
+  }
+  
+  .screen-brand .progress-track {
+    flex-grow: 1;
+    height: 27px;
+    max-width: 200px;
     background: #ccc;
-    color: white;
-    font-size: 12px;
-    padding: 3px 8px;
-    border-radius: 10px;
-    display: inline-block;
-    margin-top: 3px;
-}
-
-#screen-brand .participants {
-    text-align: right;
+    border-radius: 15px;
+    position: relative;
+  }
+  
+  .screen-brand .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: white;
+  }
+  
+  .screen-brand .stats-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .screen-brand .roles {
+    margin-top: 40px;
+  }
+  
+  .screen-brand .role {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 40px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    height: 60px;
+  }
+  
+  .screen-brand .role-icon {
+    display: flex;
+    align-items: center;
+  }
+  
+  .screen-brand .role-icon img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .screen-brand .role-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .screen-brand .role-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .screen-brand .role-subtitle {
+    font-size: 16px;
     color: #777;
+    font-weight: bold;
+    margin: 0;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .screen-brand .user-icons img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+  
+  .screen-brand .stats-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .screen-brand .text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-left: 20px;
+  }
+  
+  .screen-brand .two-text {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .screen-brand .text-container span {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .screen-brand .progress-bars {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+  }
+  
+  .screen-brand .stat-bar {
+    width: 20px;
+    height: 80px;
+    background: #ddd;
+    border-radius: 10px;
+    position: relative;
+  }
+  
+  .screen-brand .stat-bar .fill {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    border-radius: 10px;
+  }
+  
+  .screen-brand .green-fill {
+    height: 0%;
+    background-color: #879958;
+  }
+  
+  .screen-brand .purple-fill {
+    height: 0%;
+    background-color: #927ebe;
+  }
+  
+  .screen-brand .yellow-fill {
+    height: 0%;
+    background-color: #d3b259;
+  }
+  
+  .screen-brand .color-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .screen-brand .exit-icon img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .screen-brand .green-dot {
+    background-color: #879958;
+  }
+  
+  .screen-brand .purple-dot {
+    background-color: #927ebe;
+  }
+  
+  .screen-brand .yellow-dot {
+    background-color: #d3b259;
+  }
+
+  .screen-brand .members-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 20px;
+    padding: 16px;
+    margin-bottom: 70px; /* Для футера */
+  }
+
+  .screen-brand .member-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    background: #fff;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .screen-brand .member-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-bottom: 8px;
+    object-fit: cover;
+  }
+
+  .screen-brand .member-name {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 4px;
+    color: #333;
+  }
+
+  .screen-brand .member-level {
     font-size: 12px;
-    margin: 14px;
-}
+    color: #666;
+    background: #f0f0f0;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+  }
+
+  .screen-brand .member-actions {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+
+  .screen-brand .member-menu-button {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    color: #666;
+  }
+
+  .screen-brand .member-menu-button:hover {
+    color: #333;
+  }
+
+  /* Стили для диалогового меню */
+  .screen-brand .member-menu {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none;
+  }
+
+  .screen-brand .member-menu.active {
+    display: block;
+  }
+
+  .screen-brand .member-menu-item {
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .screen-brand .member-menu-item:hover {
+    background: #f5f5f5;
+  }
+
+  /* Новые стили для футера */
+  .brand-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+  }
+
+  .brand-footer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #666;
+  }
+
+  .brand-footer-item.active {
+    color: #333;
+  }
+
+  .brand-footer-icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 4px;
+  }
+
+  .brand-footer-text {
+    font-size: 12px;
+    font-weight: 500;
+  }

@@ -7,26 +7,29 @@ class BaseConfig:
     DATABASE_URI = "sqlite:///db/database.db"
     SSL_CERT_PATH = "cerf/certificate.crt"
     SSL_KEY_PATH = "cerf/private.key"
+    CLOUDFLARE_ENABLED = True
+    CLOUDFLARE_DOMAIN = "fckfsh.ru"
 
 
 class ProductionConfig(BaseConfig):
     PUBLIC_URL = "https://fckfsh.ru"
     DEBUG = False
     DATABASE_URI = "postgresql://my_user:9044@localhost:5432/fckfshdb"
+    CLOUDFLARE_ENABLED = True
+    CLOUDFLARE_DOMAIN = "fckfsh.ru"
 
 
 class DevelopmentConfig(BaseConfig):
-    PUBLIC_URL = "http://localhost:5000"
+    PUBLIC_URL = "https://fckfsh.ru"  # Используем HTTPS даже в development
     DEBUG = True
-    # Используем SQLite для локальной разработки
     DATABASE_URI = "postgresql://my_user:9044@localhost:5432/fckfshdb"
+    CLOUDFLARE_ENABLED = True
+    CLOUDFLARE_DOMAIN = "fckfsh.ru"
 
 
 def get_config():
-    env = os.getenv('FLASK_ENV', 'development')
-    if env == 'production':
-        return ProductionConfig
-    return DevelopmentConfig
+    # Принудительно используем production конфигурацию
+    return ProductionConfig
 
 
 Config = get_config()

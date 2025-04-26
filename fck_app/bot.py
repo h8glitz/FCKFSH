@@ -5,13 +5,14 @@ import asyncio
 import os
 import aiohttp
 import logging
+from config import Config
 
 # Настройка логирования
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Инициализация бота с токеном
-BOT_TOKEN = "7155706487:AAEDysCMxBLxlztkxVmC8XA-3Y1fQVc5YTk"
+BOT_TOKEN = Config.BOT_TOKEN
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(bot=bot)
 
@@ -21,15 +22,21 @@ async def save_user_to_server(user_data):
     try:
         logger.info(f"Отправляем на сервер данные: {user_data}")
 
-        base_url = os.environ.get("PUBLIC_URL")
+        base_url = Config.PUBLIC_URL
         if not base_url:
-            logger.error("PUBLIC_URL не установлен в окружении")
+            logger.error("PUBLIC_URL не установлен в конфигурации")
             return
+
+        # Подготавливаем данные для отправки
+        data_to_send = {
+            "id": user_data["id"],
+            "user": user_data  # Отправляем все данные пользователя в поле user
+        }
 
         async with aiohttp.ClientSession() as session:
             async with session.post(
-                    f"{base_url}/init_user_data",
-                    json=user_data,
+                    f"{base_url}/get_user_data",
+                    json=data_to_send,
                     headers={"Content-Type": "application/json"}
             ) as response:
                 if response.status == 200:
@@ -45,19 +52,19 @@ async def save_user_to_server(user_data):
 async def start_command(message: types.Message):
     """Обработчик команды /start"""
     logger.info(f"Получена команда /start от пользователя {message.from_user.id}")
-    logger.info(f"PUBLIC_URL: {os.environ.get('PUBLIC_URL')}")
+    logger.info(f"PUBLIC_URL: {Config.PUBLIC_URL}")
 
     try:
         # Получение данных пользователя
         user = message.from_user
         user_data = {
             "id": user.id,
-            "username": user.username,
-            "first_name": user.first_name,
-            "last_name": user.last_name,
-            "language_code": user.language_code,
+            "username": user.username or "unknown",
+            "first_name": user.first_name or "",
+            "last_name": user.last_name or "",
+            "language_code": user.language_code or "en",
             "photo_url": None,
-            "role": 0  # Добавил роль по умолчанию
+            "role": "user"  # Добавил роль по умолчанию
         }
 
         logger.info(f"Собраны данные пользователя: {user_data}")
@@ -76,9 +83,9 @@ async def start_command(message: types.Message):
         await save_user_to_server(user_data)
 
         # Создание и отправка клавиатуры с кнопкой Mini App
-        base_url = os.environ.get("PUBLIC_URL")
+        base_url = Config.PUBLIC_URL
         if not base_url:
-            raise ValueError("PUBLIC_URL не установлен в окружении")
+            raise ValueError("PUBLIC_URL не установлен в конфигурации")
 
         mini_app_button = InlineKeyboardButton(
             text="Открыть Mini App",
